@@ -5,8 +5,8 @@
  */
 (function () {
   // Configuration - will be replaced with your actual domain
-  const API_ENDPOINT = "https://your-insanelink-domain.com/api/track";
-  const PIXEL_ENDPOINT = "https://your-insanelink-domain.com/api/track-pixel";
+  const API_ENDPOINT = "http://localhost:3000/api/track";
+  const PIXEL_ENDPOINT = "http://localhost:3000/api/track-pixel";
   const RETRY_ATTEMPTS = 3;
   const RETRY_DELAY = 1000; // ms
 
