@@ -1,0 +1,28 @@
+{
+  "name": "insanelink-tracking",
+  "version": "1.0.0",
+  "description": "InsaneLink landing page tracking script",
+  "main": "dist/insanelink.js",
+  "scripts": {
+    "build": "mkdir -p dist && cp src/insanelink.js dist/insanelink.js && npx terser src/insanelink.js -o dist/insanelink.min.js --compress --mangle --comments /InsaneLink/",
+    "version-update": "node scripts/version-update.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/insanelink-tracking.git"
+  },
+  "keywords": [
+    "tracking",
+    "analytics",
+    "url-shortener"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/insanelink-tracking/issues"
+  },
+  "homepage": "https://github.com/your-username/insanelink-tracking#readme",
+  "devDependencies": {
+    "terser": "^5.25.0"
+  }
+}
