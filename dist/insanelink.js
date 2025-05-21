@@ -84,6 +84,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
         keepalive: true,
+        mode: 'cors'
       })
         .then((response) => {
           if (!response.ok) {
