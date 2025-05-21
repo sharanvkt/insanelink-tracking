@@ -1,7 +1,7 @@
 /**
  * InsaneLink Tracking Script v1.0.0
  * Used to track landing page views for InsaneLink URL shortener
- * https://github.com/your-username/insanelink-tracking
+ * https://github.com/sharanvkt/insanelink-tracking
  */
 (function () {
   const API_ENDPOINT = "https://linkmetrics-gamma.vercel.app/api/track";
@@ -20,6 +20,7 @@
 
       // Only proceed if we have tracking parameters
       if (!visitorId || !linkId) {
+        console.log("InsaneLink: No tracking parameters found in URL");
         return;
       }
 
@@ -79,18 +80,37 @@
 
     // Method 2: Fallback to fetch with keepalive
     try {
+      console.log(
+        "InsaneLink: Attempting to track with fetch API",
+        data.linkId
+      );
+
       fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
         keepalive: true,
-        mode: 'cors'
+        mode: "cors",
+        credentials: "omit", // Explicitly omit credentials
       })
         .then((response) => {
+          console.log("InsaneLink: Fetch response status:", response.status);
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json().then((errData) => {
+              throw new Error(
+                `HTTP error! status: ${
+                  response.status
+                }, message: ${JSON.stringify(errData)}`
+              );
+            });
           }
-          console.log("InsaneLink: Successfully tracked page view using fetch");
+          return response.json();
+        })
+        .then((responseData) => {
+          console.log(
+            "InsaneLink: Successfully tracked page view using fetch",
+            responseData
+          );
         })
         .catch((error) => {
           console.warn("InsaneLink: Fetch API failed", error);
