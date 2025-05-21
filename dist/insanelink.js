@@ -4,18 +4,11 @@
  * https://github.com/your-username/insanelink-tracking
  */
 (function () {
-  // Configuration - will be replaced with your actual domain
-  // Configuration based on environment
-  const BASE_URL =
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-      ? "http://localhost:3000" // Development
-      : "https://insanelink.your-company.com"; // Production
+  const API_ENDPOINT = "https://linkmetrics-gamma.vercel.app/api/track";
+  const PIXEL_ENDPOINT = "https://linkmetrics-gamma.vercel.app/api/track-pixel";
 
-  const API_ENDPOINT = `${BASE_URL}/api/track`;
-  const PIXEL_ENDPOINT = `${BASE_URL}/api/track-pixel`;
   const RETRY_ATTEMPTS = 3;
-  const RETRY_DELAY = 1000; 
+  const RETRY_DELAY = 1000;
 
   // Main tracking function
   function trackPageView() {
